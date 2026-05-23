@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"d:\\\\Digital_products\\\\DDTeam_hub\" -Recurse -Force | ForEach-Object { if \\($_.PSIsContainer\\) { $_.FullName + \" \\(DIR\\)\" } else { $_.FullName } } | Sort-Object)",
+      "Bash(npx create-next-app@14 . --typescript --tailwind --eslint --app --import-alias \"@/*\" --no-src-dir --use-npm)",
+      "Bash(npm install *)",
+      "Bash(mkdir -p \"d:/Digital_products/DDTeam_hub/app/\\(auth\\)/login\" \"d:/Digital_products/DDTeam_hub/app/\\(protected\\)/dashboard\" \"d:/Digital_products/DDTeam_hub/app/\\(protected\\)/team/[id]\" \"d:/Digital_products/DDTeam_hub/app/\\(protected\\)/admin/profiles\" \"d:/Digital_products/DDTeam_hub/app/\\(protected\\)/admin/integration\" \"d:/Digital_products/DDTeam_hub/app/\\(protected\\)/admin/users\" \"d:/Digital_products/DDTeam_hub/app/api/auth/[...nextauth]\" \"d:/Digital_products/DDTeam_hub/app/api/sync\" \"d:/Digital_products/DDTeam_hub/app/api/kpi\" \"d:/Digital_products/DDTeam_hub/app/api/profiles/[id]\" \"d:/Digital_products/DDTeam_hub/app/api/upload\" \"d:/Digital_products/DDTeam_hub/app/api/users/[id]\" \"d:/Digital_products/DDTeam_hub/app/team/[id]\" \"d:/Digital_products/DDTeam_hub/components/ui\" \"d:/Digital_products/DDTeam_hub/components/backgrounds\" \"d:/Digital_products/DDTeam_hub/components/animations\" \"d:/Digital_products/DDTeam_hub/components/layout\" \"d:/Digital_products/DDTeam_hub/components/dashboard\" \"d:/Digital_products/DDTeam_hub/components/team\" \"d:/Digital_products/DDTeam_hub/components/admin\" \"d:/Digital_products/DDTeam_hub/lib/azure\" \"d:/Digital_products/DDTeam_hub/hooks\" \"d:/Digital_products/DDTeam_hub/types\" \"d:/Digital_products/DDTeam_hub/drizzle/migrations\" \"d:/Digital_products/DDTeam_hub/.github/workflows\" && echo \"All directories created\")",
+      "Bash(npx shadcn@latest add button card badge avatar dialog form input label select separator skeleton table tabs textarea toast tooltip --yes)",
+      "Bash(npx shadcn@latest add dropdown-menu --yes)",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('github'\\) || k.toLowerCase\\(\\).includes\\('linkedin'\\)\\).join\\(', '\\)\\)\")",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); const keys = Object.keys\\(l\\); console.log\\(keys.filter\\(k => k.toLowerCase\\(\\).includes\\('git'\\) || k.toLowerCase\\(\\).includes\\('link'\\)\\).slice\\(0,20\\).join\\(', '\\)\\)\")",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); const keys = Object.keys\\(l\\); console.log\\(keys.filter\\(k => k.toLowerCase\\(\\).includes\\('git'\\) || k.toLowerCase\\(\\).includes\\('social'\\)\\).slice\\(0,30\\).join\\(', '\\)\\)\")",
+      "Bash(node -e \"console.log\\(require\\('./node_modules/lucide-react/package.json'\\).version\\)\")",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).filter\\(k => /^[A-Z]/.test\\(k\\)\\).slice\\(0,5\\).join\\(', '\\)\\); console.log\\('Total:', Object.keys\\(l\\).length\\)\")",
+      "Bash(node -e \"const api = require\\('azure-devops-node-api'\\); console.log\\('ok'\\)\")",
+      "Bash(rm \"next.config.mjs.bak\")",
+      "Bash(DATABASE_URL=\"postgresql://user:pass@ep-fake.neon.tech/neondb?sslmode=require\" NEXTAUTH_SECRET=\"super-secret-key-that-is-32chars!!\" NEXTAUTH_URL=\"http://localhost:3000\" BLOB_READ_WRITE_TOKEN=\"vercel_blob_fake\" PAT_ENCRYPTION_KEY=\"0000000000000000000000000000000000000000000000000000000000000000\" CRON_SECRET=\"fake-cron-secret\" npm run build)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ],
+    "additionalDirectories": [
+      "d:\\Digital_products\\DDTeam_hub\\app\\(protected)\\team"
+    ]
+  }
+}

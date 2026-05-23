@@ -1,0 +1,62 @@
+"use client";
+
+import { useSession, signOut } from "next-auth/react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
+} from "@/components/ui/dropdown-menu";
+import { LogOut, User } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+
+export function TopBar() {
+  const { data: session } = useSession();
+
+  if (!session) return null;
+
+  const initials = session.user.email?.slice(0, 2).toUpperCase() ?? "??";
+
+  return (
+    <header className="h-14 bg-white/80 apple-blur border-b border-gray-100 flex items-center justify-end px-6 sticky top-0 z-50">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button className="flex items-center gap-2.5 rounded-full hover:bg-gray-100 p-1 pr-3 transition-colors">
+            <Avatar className="h-7 w-7">
+              <AvatarFallback className="text-xs bg-gray-900 text-white">
+                {initials}
+              </AvatarFallback>
+            </Avatar>
+            <span className="text-sm font-medium text-gray-700 hidden sm:block">
+              {session.user.email}
+            </span>
+            <Badge variant="outline" className="text-xs hidden sm:flex">
+              {session.user.role}
+            </Badge>
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-48">
+          <DropdownMenuLabel className="text-xs text-gray-500">
+            {session.user.email}
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem className="gap-2 text-sm">
+            <User size={14} />
+            Профіль
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            className="gap-2 text-sm text-red-600"
+            onClick={() => signOut({ callbackUrl: "/login" })}
+          >
+            <LogOut size={14} />
+            Вийти
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </header>
+  );
+}
