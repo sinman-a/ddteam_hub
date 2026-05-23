@@ -3,13 +3,16 @@
 import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { TeamCard } from "./TeamCard";
 import type { TeamProfile } from "@/types/profile";
+import { useLocale } from "@/lib/locale-context";
 
 export function TeamGrid({ profiles }: { profiles: TeamProfile[] }) {
+  const { t } = useLocale();
+
   if (profiles.length === 0) {
     return (
       <div className="text-center py-20 text-gray-400">
-        <p className="text-lg">Профілів поки немає</p>
-        <p className="text-sm mt-1">Admin може додати членів команди</p>
+        <p className="text-lg">{t("team.empty_profiles")}</p>
+        <p className="text-sm mt-1">{t("team.empty_admin_hint")}</p>
       </div>
     );
   }

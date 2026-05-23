@@ -5,10 +5,13 @@ import { ParallaxHero } from "@/components/animations/ParallaxHero";
 import { FadeInSection } from "@/components/animations/FadeInSection";
 import { TeamGrid } from "@/components/team/TeamGrid";
 import type { TeamProfile } from "@/types/profile";
+import { getServerT } from "@/lib/locale-server";
 
 export const dynamic = "force-dynamic";
 
 export default async function TeamPage() {
+  const { t } = getServerT();
+
   const profiles = await db
     .select()
     .from(teamProfiles)
@@ -21,13 +24,13 @@ export default async function TeamPage() {
           <div className="max-w-6xl mx-auto">
             <FadeInSection>
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
-                DDTeam
+                {t("team.subtitle")}
               </p>
               <h1 className="text-5xl sm:text-6xl font-black tracking-tightest text-gradient mb-4">
-                Наша команда
+                {t("team.title")}
               </h1>
               <p className="text-lg text-gray-500 max-w-md">
-                {profiles.length} спеціалістів, які будують майбутнє разом
+                {t("team.count", { count: profiles.length })}
               </p>
             </FadeInSection>
           </div>

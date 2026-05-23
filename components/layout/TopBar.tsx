@@ -12,9 +12,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOut, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useLocale } from "@/lib/locale-context";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function TopBar() {
   const { data: session } = useSession();
+  const { t } = useLocale();
 
   if (!session) return null;
 
@@ -38,14 +41,14 @@ export function TopBar() {
             </Badge>
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuContent align="end" className="w-52">
           <DropdownMenuLabel className="text-xs text-gray-500">
             {session.user.email}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="gap-2 text-sm">
             <User size={14} />
-            Профіль
+            {t("topbar.profile")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
@@ -53,8 +56,10 @@ export function TopBar() {
             onClick={() => signOut({ callbackUrl: "/login" })}
           >
             <LogOut size={14} />
-            Вийти
+            {t("topbar.sign_out")}
           </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <LanguageSwitcher />
         </DropdownMenuContent>
       </DropdownMenu>
     </header>

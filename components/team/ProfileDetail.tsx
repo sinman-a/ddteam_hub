@@ -9,8 +9,11 @@ import { Badge } from "@/components/ui/badge";
 import { FadeInSection } from "@/components/animations/FadeInSection";
 import { formatDate } from "@/lib/utils";
 import type { TeamProfile } from "@/types/profile";
+import { useLocale } from "@/lib/locale-context";
 
 export function ProfileDetail({ profile }: { profile: TeamProfile }) {
+  const { t } = useLocale();
+
   return (
     <div className="max-w-3xl mx-auto px-6 py-12">
       <FadeInSection>
@@ -19,7 +22,7 @@ export function ProfileDetail({ profile }: { profile: TeamProfile }) {
           className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors mb-8"
         >
           <ArrowLeft size={14} />
-          Назад до команди
+          {t("team.back")}
         </Link>
       </FadeInSection>
 
@@ -75,7 +78,7 @@ export function ProfileDetail({ profile }: { profile: TeamProfile }) {
               {profile.startDate && (
                 <span className="flex items-center gap-1.5 text-sm text-gray-500">
                   <Calendar size={14} />
-                  З {formatDate(profile.startDate)}
+                  {t("team.since")} {formatDate(profile.startDate)}
                 </span>
               )}
             </div>
@@ -87,7 +90,7 @@ export function ProfileDetail({ profile }: { profile: TeamProfile }) {
         <FadeInSection delay={0.2}>
           <div className="mb-8">
             <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-3">
-              Стек технологій
+              {t("team.tech_stack")}
             </h2>
             <div className="flex flex-wrap gap-2">
               {profile.stackTags.map((tag) => (
@@ -104,7 +107,7 @@ export function ProfileDetail({ profile }: { profile: TeamProfile }) {
         <FadeInSection delay={0.3}>
           <div className="prose prose-gray max-w-none">
             <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
-              Про мене
+              {t("team.about")}
             </h2>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {profile.bioMd}

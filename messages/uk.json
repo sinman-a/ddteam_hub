@@ -1,0 +1,113 @@
+{
+  "common": {
+    "loading": "Завантаження...",
+    "save": "Зберегти",
+    "cancel": "Скасувати",
+    "add": "Додати",
+    "edit": "Редагувати",
+    "delete": "Видалити",
+    "saving": "Збереження...",
+    "uploading": "Завантаження..."
+  },
+  "auth": {
+    "sign_in_title": "Увійдіть у свій акаунт",
+    "register_title": "Створіть свій акаунт",
+    "email_label": "Email",
+    "password_label": "Пароль",
+    "submit_login": "Увійти",
+    "submit_register": "Зареєструватись",
+    "loading_button": "Зачекайте...",
+    "switch_to_register": "Немає акаунту? Зареєструватись",
+    "switch_to_login": "Вже маєте акаунт? Увійти",
+    "error_invalid": "Невірний email або пароль",
+    "error_register": "Помилка реєстрації",
+    "register_success": "Акаунт створено! Будь ласка, увійдіть."
+  },
+  "nav": {
+    "dashboard": "Дашборд",
+    "team": "Команда",
+    "admin_section": "Адмін",
+    "profiles": "Профілі",
+    "azure": "Azure DevOps",
+    "users": "Користувачі"
+  },
+  "topbar": {
+    "profile": "Профіль",
+    "sign_out": "Вийти"
+  },
+  "dashboard": {
+    "subtitle": "Team Performance",
+    "title": "KPI Дашборд",
+    "welcome": "Вітаємо,",
+    "period_label": "Період:",
+    "period_7": "7 днів",
+    "period_14": "14 днів",
+    "period_30": "30 днів",
+    "sync_updated": "Оновлено:",
+    "sync_never": "Дані не синхронізовані",
+    "sync_now": "Синхронізувати зараз"
+  },
+  "team": {
+    "subtitle": "DDTeam",
+    "title": "Наша команда",
+    "count": "{count} спеціалістів, які будують майбутнє разом",
+    "empty_profiles": "Профілів поки немає",
+    "empty_admin_hint": "Admin може додати членів команди",
+    "back": "Назад до команди",
+    "tech_stack": "Стек технологій",
+    "about": "Про мене",
+    "since": "З"
+  },
+  "admin": {
+    "section_label": "Адмін",
+    "profiles_title": "Профілі команди",
+    "add_member": "Додати учасника",
+    "no_profiles": "Профілів ще немає",
+    "no_profiles_hint": "Додайте першого учасника команди",
+    "edit_profile": "Редагувати профіль",
+    "add_profile": "Додати учасника",
+    "confirm_delete_profile": "Видалити профіль?",
+    "users_title": "Користувачі",
+    "users_col_email": "Email",
+    "users_col_role": "Роль",
+    "users_col_registered": "Зареєстрований",
+    "users_col_actions": "Дії",
+    "users_you": "(ви)",
+    "users_invite": "Запросити нового члена:",
+    "users_invite_hint": "Поділіться посиланням",
+    "users_invite_suffix": "— після реєстрації змініть роль вище.",
+    "confirm_delete_user": "Видалити користувача?",
+    "integration_section": "Налаштування",
+    "integration_title": "Azure DevOps",
+    "integration_connect": "Підключіть ваш Azure DevOps проект для синхронізації KPI",
+    "integration_last_sync": "Остання синхронізація:",
+    "integration_org": "Organization",
+    "integration_project": "Project",
+    "integration_pat": "PAT Token",
+    "integration_pat_hint": "Потрібен Read доступ до Work Items, Code, Analytics",
+    "integration_save": "Зберегти та протестувати",
+    "integration_testing": "Тестуємо підключення...",
+    "integration_success": "Підключення успішне! Дані синхронізовані.",
+    "integration_error_save": "Помилка збереження",
+    "integration_error_sync": "Налаштування збережено, але синхронізація не вдалась. Перевірте PAT і права доступу."
+  },
+  "profile_form": {
+    "upload_photo": "Оновити фото",
+    "photo_hint": "JPG, PNG до 5MB",
+    "name_label": "Ім'я",
+    "role_label": "Роль",
+    "role_placeholder": "Frontend Developer",
+    "github_label": "GitHub URL",
+    "linkedin_label": "LinkedIn URL",
+    "start_date_label": "Дата старту",
+    "stack_label": "Стек технологій",
+    "stack_placeholder": "React, TypeScript...",
+    "bio_label": "BIO (Markdown)",
+    "bio_placeholder": "# Про мене..."
+  },
+  "lang": {
+    "switcher_label": "Мова",
+    "uk": "UA",
+    "en": "EN"
+  }
+}

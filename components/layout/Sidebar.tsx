@@ -12,22 +12,24 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { href: "/dashboard", label: "Дашборд", icon: LayoutDashboard },
-  { href: "/team", label: "Команда", icon: Users },
-];
-
-const adminItems = [
-  { href: "/admin/profiles", label: "Профілі", icon: UserCog },
-  { href: "/admin/integration", label: "Azure DevOps", icon: Plug },
-  { href: "/admin/users", label: "Користувачі", icon: Settings },
-];
+import { useLocale } from "@/lib/locale-context";
 
 export function Sidebar() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const isAdmin = session?.user.role === "admin";
+  const { t } = useLocale();
+
+  const navItems = [
+    { href: "/dashboard", label: t("nav.dashboard"), icon: LayoutDashboard },
+    { href: "/team", label: t("nav.team"), icon: Users },
+  ];
+
+  const adminItems = [
+    { href: "/admin/profiles", label: t("nav.profiles"), icon: UserCog },
+    { href: "/admin/integration", label: t("nav.azure"), icon: Plug },
+    { href: "/admin/users", label: t("nav.users"), icon: Settings },
+  ];
 
   return (
     <aside className="w-64 min-h-screen bg-white/80 apple-blur border-r border-gray-100 flex flex-col">
@@ -68,7 +70,7 @@ export function Sidebar() {
           <>
             <div className="pt-4 pb-1 px-3">
               <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
-                Адмін
+                {t("nav.admin_section")}
               </span>
             </div>
             {adminItems.map((item) => {

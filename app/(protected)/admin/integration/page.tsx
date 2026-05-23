@@ -1,13 +1,15 @@
-import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { azureSettings } from "@/lib/schema";
 import { DiagonalGrid } from "@/components/backgrounds/DiagonalGrid";
 import { FadeInSection } from "@/components/animations/FadeInSection";
 import { IntegrationForm } from "@/components/admin/IntegrationForm";
+import { getServerT } from "@/lib/locale-server";
 
 export const dynamic = "force-dynamic";
 
 export default async function IntegrationPage() {
+  const { t } = getServerT();
+
   const settings = await db
     .select({
       org: azureSettings.org,
@@ -30,10 +32,10 @@ export default async function IntegrationPage() {
       <div className="max-w-4xl mx-auto px-6 py-12">
         <FadeInSection>
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-            Налаштування
+            {t("admin.integration_section")}
           </p>
           <h1 className="text-4xl font-black tracking-tightest text-gradient mb-8">
-            Azure DevOps
+            {t("admin.integration_title")}
           </h1>
         </FadeInSection>
 

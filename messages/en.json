@@ -1,0 +1,113 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "saving": "Saving...",
+    "uploading": "Uploading..."
+  },
+  "auth": {
+    "sign_in_title": "Sign in to your account",
+    "register_title": "Create your account",
+    "email_label": "Email",
+    "password_label": "Password",
+    "submit_login": "Sign in",
+    "submit_register": "Register",
+    "loading_button": "Please wait...",
+    "switch_to_register": "No account? Register",
+    "switch_to_login": "Already have an account? Sign in",
+    "error_invalid": "Invalid email or password",
+    "error_register": "Registration error",
+    "register_success": "Account created! Please sign in."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "team": "Team",
+    "admin_section": "Admin",
+    "profiles": "Profiles",
+    "azure": "Azure DevOps",
+    "users": "Users"
+  },
+  "topbar": {
+    "profile": "Profile",
+    "sign_out": "Sign out"
+  },
+  "dashboard": {
+    "subtitle": "Team Performance",
+    "title": "KPI Dashboard",
+    "welcome": "Welcome,",
+    "period_label": "Period:",
+    "period_7": "7 days",
+    "period_14": "14 days",
+    "period_30": "30 days",
+    "sync_updated": "Updated:",
+    "sync_never": "Data not synced",
+    "sync_now": "Sync now"
+  },
+  "team": {
+    "subtitle": "DDTeam",
+    "title": "Our Team",
+    "count": "{count} specialists building the future together",
+    "empty_profiles": "No profiles yet",
+    "empty_admin_hint": "Admin can add team members",
+    "back": "Back to team",
+    "tech_stack": "Tech Stack",
+    "about": "About",
+    "since": "Since"
+  },
+  "admin": {
+    "section_label": "Admin",
+    "profiles_title": "Team Profiles",
+    "add_member": "Add member",
+    "no_profiles": "No profiles yet",
+    "no_profiles_hint": "Add the first team member",
+    "edit_profile": "Edit profile",
+    "add_profile": "Add member",
+    "confirm_delete_profile": "Delete profile?",
+    "users_title": "Users",
+    "users_col_email": "Email",
+    "users_col_role": "Role",
+    "users_col_registered": "Registered",
+    "users_col_actions": "Actions",
+    "users_you": "(you)",
+    "users_invite": "Invite a new member:",
+    "users_invite_hint": "Share the link",
+    "users_invite_suffix": "— change the role above after registration.",
+    "confirm_delete_user": "Delete user?",
+    "integration_section": "Settings",
+    "integration_title": "Azure DevOps",
+    "integration_connect": "Connect your Azure DevOps project to sync KPI metrics",
+    "integration_last_sync": "Last synced:",
+    "integration_org": "Organization",
+    "integration_project": "Project",
+    "integration_pat": "PAT Token",
+    "integration_pat_hint": "Read access required for Work Items, Code, Analytics",
+    "integration_save": "Save and test",
+    "integration_testing": "Testing connection...",
+    "integration_success": "Connection successful! Data synced.",
+    "integration_error_save": "Save error",
+    "integration_error_sync": "Settings saved, but sync failed. Check PAT and permissions."
+  },
+  "profile_form": {
+    "upload_photo": "Update photo",
+    "photo_hint": "JPG, PNG up to 5MB",
+    "name_label": "Name",
+    "role_label": "Role",
+    "role_placeholder": "Frontend Developer",
+    "github_label": "GitHub URL",
+    "linkedin_label": "LinkedIn URL",
+    "start_date_label": "Start date",
+    "stack_label": "Tech stack",
+    "stack_placeholder": "React, TypeScript...",
+    "bio_label": "BIO (Markdown)",
+    "bio_placeholder": "# About me..."
+  },
+  "lang": {
+    "switcher_label": "Language",
+    "uk": "UA",
+    "en": "EN"
+  }
+}

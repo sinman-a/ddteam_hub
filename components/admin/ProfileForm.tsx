@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, Upload, X } from "lucide-react";
 import { profileSchema, type ProfileInput } from "@/lib/validations";
 import type { TeamProfile } from "@/types/profile";
+import { useLocale } from "@/lib/locale-context";
 
 interface ProfileFormProps {
   profile?: TeamProfile;
@@ -25,6 +26,7 @@ export function ProfileForm({ profile, onSuccess, onCancel }: ProfileFormProps) 
   const [photoUrl, setPhotoUrl] = useState(profile?.photoUrl ?? "");
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState<string[]>(profile?.stackTags ?? []);
+  const { t } = useLocale();
 
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<ProfileInput>({
     resolver: zodResolver(profileSchema),
@@ -53,9 +55,9 @@ export function ProfileForm({ profile, onSuccess, onCancel }: ProfileFormProps) 
   };
 
   const addTag = () => {
-    const t = tagInput.trim();
-    if (t && !tags.includes(t)) {
-      const newTags = [...tags, t];
+    const tag = tagInput.trim();
+    if (tag && !tags.includes(tag)) {
+      const newTags = [...tags, tag];
       setTags(newTags);
       setValue("stackTags", newTags);
     }
@@ -63,7 +65,7 @@ export function ProfileForm({ profile, onSuccess, onCancel }: ProfileFormProps) 
   };
 
   const removeTag = (tag: string) => {
-    const newTags = tags.filter((t) => t !== tag);
+    const newTags = tags.filter((tg) => tg !== tag);
     setTags(newTags);
     setValue("stackTags", newTags);
   };
@@ -102,7 +104,7 @@ export function ProfileForm({ profile, onSuccess, onCancel }: ProfileFormProps) 
         <div>
           <label className="cursor-pointer">
             <span className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              {uploading ? "Завантаження..." : "Оновити фото"}
+              {uploading ? t("common.uploading") : t("profile_form.upload_photo")}
             </span>
             <input
               type="file"
@@ -114,45 +116,45 @@ export function ProfileForm({ profile, onSuccess, onCancel }: ProfileFormProps) 
               }}
             />
           </label>
-          <p className="text-xs text-gray-400">JPG, PNG до 5MB</p>
+          <p className="text-xs text-gray-400">{t("profile_form.photo_hint")}</p>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <Label className="text-sm">Ім&apos;я</Label>
+          <Label className="text-sm">{t("profile_form.name_label")}</Label>
           <Input className="rounded-xl" {...register("name")} />
           {errors.name && <p className="text-xs text-red-500">{errors.name.message}</p>}
         </div>
         <div className="space-y-1.5">
-          <Label className="text-sm">Роль</Label>
-          <Input className="rounded-xl" placeholder="Frontend Developer" {...register("roleTitle")} />
+          <Label className="text-sm">{t("profile_form.role_label")}</Label>
+          <Input className="rounded-xl" placeholder={t("profile_form.role_placeholder")} {...register("roleTitle")} />
           {errors.roleTitle && <p className="text-xs text-red-500">{errors.roleTitle.message}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <Label className="text-sm">GitHub URL</Label>
+          <Label className="text-sm">{t("profile_form.github_label")}</Label>
           <Input className="rounded-xl" placeholder="https://github.com/..." {...register("github")} />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-sm">LinkedIn URL</Label>
+          <Label className="text-sm">{t("profile_form.linkedin_label")}</Label>
           <Input className="rounded-xl" placeholder="https://linkedin.com/in/..." {...register("linkedin")} />
         </div>
       </div>
 
       <div className="space-y-1.5">
-        <Label className="text-sm">Дата старту</Label>
+        <Label className="text-sm">{t("profile_form.start_date_label")}</Label>
         <Input type="date" className="rounded-xl" {...register("startDate")} />
       </div>
 
       <div className="space-y-1.5">
-        <Label className="text-sm">Стек технологій</Label>
+        <Label className="text-sm">{t("profile_form.stack_label")}</Label>
         <div className="flex gap-2">
           <Input
             className="rounded-xl flex-1"
-            placeholder="React, TypeScript..."
+            placeholder={t("profile_form.stack_placeholder")}
             value={tagInput}
             onChange={(e) => setTagInput(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }}
@@ -172,21 +174,21 @@ export function ProfileForm({ profile, onSuccess, onCancel }: ProfileFormProps) 
       </div>
 
       <div className="space-y-1.5">
-        <Label className="text-sm">BIO (Markdown)</Label>
+        <Label className="text-sm">{t("profile_form.bio_label")}</Label>
         <Textarea
           className="rounded-xl min-h-[120px] font-mono text-sm"
-          placeholder="# Про мене..."
+          placeholder={t("profile_form.bio_placeholder")}
           {...register("bioMd")}
         />
       </div>
 
       <div className="flex justify-end gap-3 pt-2">
         <Button type="button" variant="outline" className="rounded-xl" onClick={onCancel}>
-          Скасувати
+          {t("common.cancel")}
         </Button>
         <Button type="submit" disabled={loading} className="rounded-xl bg-gray-900 hover:bg-gray-800">
           {loading && <Loader2 size={14} className="animate-spin mr-2" />}
-          {profile ? "Зберегти" : "Додати"}
+          {profile ? t("common.save") : t("common.add")}
         </Button>
       </div>
     </form>

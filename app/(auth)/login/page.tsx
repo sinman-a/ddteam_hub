@@ -12,13 +12,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { loginSchema, type LoginInput } from "@/lib/validations";
+import { useLocale } from "@/lib/locale-context";
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [mode, setMode] = useState<"login" | "register">("login");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+  const { t } = useLocale();
 
   const isRegister = searchParams.get("register") === "true" || mode === "register";
 
@@ -29,6 +32,7 @@ function LoginForm() {
   const onSubmit = async (data: LoginInput) => {
     setLoading(true);
     setError("");
+    setSuccess("");
 
     if (isRegister) {
       const res = await fetch("/api/users", {
@@ -38,10 +42,26 @@ function LoginForm() {
       });
       if (!res.ok) {
         const json = await res.json();
-        setError(json.error || "Помилка реєстрації");
+        setError(json.error || t("auth.error_register"));
         setLoading(false);
         return;
       }
+      // Try auto-sign-in after successful registration
+      const autoResult = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+      if (!autoResult?.error) {
+        router.push("/dashboard");
+        router.refresh();
+        return;
+      }
+      // Auto-sign-in failed (cold-start issue) — switch to login with success message
+      setMode("login");
+      setSuccess(t("auth.register_success"));
+      setLoading(false);
+      return;
     }
 
     const result = await signIn("credentials", {
@@ -51,7 +71,7 @@ function LoginForm() {
     });
 
     if (result?.error) {
-      setError("Невірний email або пароль");
+      setError(t("auth.error_invalid"));
       setLoading(false);
       return;
     }
@@ -75,14 +95,14 @@ function LoginForm() {
           DDTeam Hub
         </h1>
         <p className="text-gray-500 text-sm">
-          {isRegister ? "Створіть свій акаунт" : "Увійдіть у свій акаунт"}
+          {isRegister ? t("auth.register_title") : t("auth.sign_in_title")}
         </p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="space-y-1.5">
           <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-            Email
+            {t("auth.email_label")}
           </Label>
           <Input
             id="email"
@@ -98,7 +118,7 @@ function LoginForm() {
 
         <div className="space-y-1.5">
           <Label htmlFor="password" className="text-sm font-medium text-gray-700">
-            Пароль
+            {t("auth.password_label")}
           </Label>
           <Input
             id="password"
@@ -111,6 +131,16 @@ function LoginForm() {
             <p className="text-xs text-red-500">{errors.password.message}</p>
           )}
         </div>
+
+        {success && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-sm text-green-600 text-center"
+          >
+            {success}
+          </motion.p>
+        )}
 
         {error && (
           <motion.p
@@ -128,10 +158,10 @@ function LoginForm() {
           className="w-full h-11 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-medium text-sm transition-all duration-200 mt-2"
         >
           {loading
-            ? "Зачекайте..."
+            ? t("auth.loading_button")
             : isRegister
-            ? "Зареєструватись"
-            : "Увійти"}
+            ? t("auth.submit_register")
+            : t("auth.submit_login")}
         </Button>
       </form>
 
@@ -142,8 +172,8 @@ function LoginForm() {
           className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
         >
           {isRegister
-            ? "Вже маєте акаунт? Увійти"
-            : "Немає акаунту? Зареєструватись"}
+            ? t("auth.switch_to_login")
+            : t("auth.switch_to_register")}
         </button>
       </div>
     </motion.div>

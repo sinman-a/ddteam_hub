@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Trash2, ShieldCheck, ShieldMinus } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -23,6 +23,7 @@ import { DiagonalGrid } from "@/components/backgrounds/DiagonalGrid";
 import { FadeInSection } from "@/components/animations/FadeInSection";
 import { formatDate } from "@/lib/utils";
 import { useSession } from "next-auth/react";
+import { useLocale } from "@/lib/locale-context";
 
 interface User {
   id: string;
@@ -41,6 +42,7 @@ export default function AdminUsersPage() {
   const { data: session } = useSession();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useLocale();
 
   const fetchUsers = async () => {
     const res = await fetch("/api/users");
@@ -60,7 +62,7 @@ export default function AdminUsersPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Видалити користувача?")) return;
+    if (!confirm(t("admin.confirm_delete_user"))) return;
     await fetch(`/api/users/${id}`, { method: "DELETE" });
     await fetchUsers();
   };
@@ -70,10 +72,10 @@ export default function AdminUsersPage() {
       <div className="max-w-5xl mx-auto px-6 py-12">
         <FadeInSection>
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">
-            Адмін
+            {t("admin.section_label")}
           </p>
           <h1 className="text-4xl font-black tracking-tightest text-gradient mb-8">
-            Користувачі
+            {t("admin.users_title")}
           </h1>
         </FadeInSection>
 
@@ -82,17 +84,17 @@ export default function AdminUsersPage() {
             <Table>
               <TableHeader>
                 <TableRow className="bg-gray-50/50">
-                  <TableHead className="text-xs font-semibold text-gray-500">Email</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-500">Роль</TableHead>
-                  <TableHead className="text-xs font-semibold text-gray-500">Зареєстрований</TableHead>
-                  <TableHead className="text-right text-xs font-semibold text-gray-500">Дії</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-500">{t("admin.users_col_email")}</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-500">{t("admin.users_col_role")}</TableHead>
+                  <TableHead className="text-xs font-semibold text-gray-500">{t("admin.users_col_registered")}</TableHead>
+                  <TableHead className="text-right text-xs font-semibold text-gray-500">{t("admin.users_col_actions")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {loading ? (
                   <TableRow>
                     <TableCell colSpan={4} className="text-center text-gray-400 py-8">
-                      Завантаження...
+                      {t("common.loading")}
                     </TableCell>
                   </TableRow>
                 ) : (
@@ -101,7 +103,7 @@ export default function AdminUsersPage() {
                       <TableCell className="font-medium text-sm text-gray-900">
                         {user.email}
                         {user.id === session?.user.id && (
-                          <span className="ml-2 text-xs text-gray-400">(ви)</span>
+                          <span className="ml-2 text-xs text-gray-400">{t("admin.users_you")}</span>
                         )}
                       </TableCell>
                       <TableCell>
@@ -151,12 +153,12 @@ export default function AdminUsersPage() {
         <FadeInSection delay={0.2}>
           <div className="mt-6 p-4 bg-amber-50 rounded-2xl border border-amber-100">
             <p className="text-sm text-amber-800">
-              <strong>Запросити нового члена:</strong> Поділіться посиланням{" "}
+              <strong>{t("admin.users_invite")}</strong> {t("admin.users_invite_hint")}{" "}
               <code className="bg-amber-100 px-1.5 py-0.5 rounded text-xs">
                 {typeof window !== "undefined" ? window.location.origin : ""}
                 /login?register=true
               </code>{" "}
-              — після реєстрації змініть роль вище.
+              {t("admin.users_invite_suffix")}
             </p>
           </div>
         </FadeInSection>

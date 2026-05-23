@@ -1,13 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const PERIODS = [
-  { value: 7, label: "7 днів" },
-  { value: 14, label: "14 днів" },
-  { value: 30, label: "30 днів" },
-];
+import { useLocale } from "@/lib/locale-context";
 
 interface FilterBarProps {
   period: number;
@@ -15,9 +9,17 @@ interface FilterBarProps {
 }
 
 export function FilterBar({ period, onPeriodChange }: FilterBarProps) {
+  const { t } = useLocale();
+
+  const PERIODS = [
+    { value: 7, label: t("dashboard.period_7") },
+    { value: 14, label: t("dashboard.period_14") },
+    { value: 30, label: t("dashboard.period_30") },
+  ];
+
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs text-gray-400 font-medium mr-1">Період:</span>
+      <span className="text-xs text-gray-400 font-medium mr-1">{t("dashboard.period_label")}</span>
       <div className="flex gap-1.5 bg-gray-100/80 rounded-xl p-1">
         {PERIODS.map((p) => (
           <button

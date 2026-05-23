@@ -12,11 +12,13 @@ import { StaggerContainer, StaggerItem } from "@/components/animations/StaggerCo
 import { ProfileForm } from "@/components/admin/ProfileForm";
 import { useProfiles } from "@/hooks/useProfiles";
 import type { TeamProfile } from "@/types/profile";
+import { useLocale } from "@/lib/locale-context";
 
 export default function AdminProfilesPage() {
   const { profiles, isLoading, mutate } = useProfiles();
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<TeamProfile | undefined>();
+  const { t } = useLocale();
 
   const handleEdit = (profile: TeamProfile) => {
     setEditing(profile);
@@ -29,7 +31,7 @@ export default function AdminProfilesPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Видалити профіль?")) return;
+    if (!confirm(t("admin.confirm_delete_profile"))) return;
     await fetch(`/api/profiles/${id}`, { method: "DELETE" });
     await mutate();
   };
@@ -46,10 +48,10 @@ export default function AdminProfilesPage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">
-                Адмін
+                {t("admin.section_label")}
               </p>
               <h1 className="text-4xl font-black tracking-tightest text-gradient">
-                Профілі команди
+                {t("admin.profiles_title")}
               </h1>
             </div>
             <Button
@@ -57,13 +59,13 @@ export default function AdminProfilesPage() {
               className="rounded-2xl bg-gray-900 hover:bg-gray-800 gap-2 h-11"
             >
               <Plus size={16} />
-              Додати учасника
+              {t("admin.add_member")}
             </Button>
           </div>
         </FadeInSection>
 
         {isLoading ? (
-          <div className="text-center text-gray-400 py-16">Завантаження...</div>
+          <div className="text-center text-gray-400 py-16">{t("common.loading")}</div>
         ) : (
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {profiles.map((profile) => (
@@ -131,8 +133,8 @@ export default function AdminProfilesPage() {
           <FadeInSection>
             <div className="text-center py-20 text-gray-400">
               <User size={40} className="mx-auto mb-4 opacity-30" />
-              <p className="text-lg font-medium mb-1">Профілів ще немає</p>
-              <p className="text-sm">Додайте першого учасника команди</p>
+              <p className="text-lg font-medium mb-1">{t("admin.no_profiles")}</p>
+              <p className="text-sm">{t("admin.no_profiles_hint")}</p>
             </div>
           </FadeInSection>
         )}
@@ -141,7 +143,7 @@ export default function AdminProfilesPage() {
           <DialogContent className="rounded-2xl max-w-lg max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle className="text-lg font-bold tracking-tight">
-                {editing ? "Редагувати профіль" : "Додати учасника"}
+                {editing ? t("admin.edit_profile") : t("admin.add_profile")}
               </DialogTitle>
             </DialogHeader>
             <ProfileForm

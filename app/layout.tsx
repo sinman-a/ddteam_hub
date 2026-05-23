@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "./providers";
+import { getLocale } from "@/lib/locale-server";
 
 export const metadata: Metadata = {
   title: "DDTeam Hub",
@@ -13,10 +14,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const locale = getLocale();
+
   return (
-    <html lang="uk">
+    <html lang={locale}>
       <body>
-        <Providers>
+        <Providers initialLocale={locale}>
           {children}
           <Toaster />
         </Providers>
