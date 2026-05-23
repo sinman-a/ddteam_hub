@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
-import { SoftYellowGlow } from "@/components/backgrounds/SoftYellowGlow";
+import { WavyBackground } from "@/components/ui/wavy";
 import { FadeInSection } from "@/components/animations/FadeInSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -82,53 +82,53 @@ function LoginForm() {
 
   return (
     <motion.div
-      className="w-full max-w-sm"
+      className="w-full max-w-sm bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl"
       initial={{ opacity: 0, y: 32 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <div className="text-center mb-10">
-        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-700 mx-auto mb-6 flex items-center justify-center shadow-lg">
+        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/30 to-blue-900/50 border border-white/20 mx-auto mb-6 flex items-center justify-center shadow-lg">
           <span className="text-white text-lg font-bold">DD</span>
         </div>
-        <h1 className="text-3xl font-bold tracking-tightest text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold tracking-tightest text-white mb-2">
           DDTeam Hub
         </h1>
-        <p className="text-gray-500 text-sm">
+        <p className="text-gray-400 text-sm">
           {isRegister ? t("auth.register_title") : t("auth.sign_in_title")}
         </p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="space-y-1.5">
-          <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+          <Label htmlFor="email" className="text-sm font-medium text-gray-300">
             {t("auth.email_label")}
           </Label>
           <Input
             id="email"
             type="email"
             placeholder="you@company.com"
-            className="h-11 rounded-xl border-gray-200 bg-white/60 backdrop-blur-sm"
+            className="h-11 rounded-xl border-white/20 bg-white/10 text-white placeholder:text-gray-600 focus:border-blue-400/50 focus-visible:ring-blue-400/30"
             {...register("email")}
           />
           {errors.email && (
-            <p className="text-xs text-red-500">{errors.email.message}</p>
+            <p className="text-xs text-red-400">{errors.email.message}</p>
           )}
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+          <Label htmlFor="password" className="text-sm font-medium text-gray-300">
             {t("auth.password_label")}
           </Label>
           <Input
             id="password"
             type="password"
             placeholder="••••••••"
-            className="h-11 rounded-xl border-gray-200 bg-white/60 backdrop-blur-sm"
+            className="h-11 rounded-xl border-white/20 bg-white/10 text-white placeholder:text-gray-600 focus:border-blue-400/50 focus-visible:ring-blue-400/30"
             {...register("password")}
           />
           {errors.password && (
-            <p className="text-xs text-red-500">{errors.password.message}</p>
+            <p className="text-xs text-red-400">{errors.password.message}</p>
           )}
         </div>
 
@@ -136,7 +136,7 @@ function LoginForm() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-sm text-green-600 text-center"
+            className="text-sm text-green-400 text-center"
           >
             {success}
           </motion.p>
@@ -146,7 +146,7 @@ function LoginForm() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-sm text-red-500 text-center"
+            className="text-sm text-red-400 text-center"
           >
             {error}
           </motion.p>
@@ -155,7 +155,7 @@ function LoginForm() {
         <Button
           type="submit"
           disabled={loading}
-          className="w-full h-11 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-medium text-sm transition-all duration-200 mt-2"
+          className="w-full h-11 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-all duration-200 mt-2 border-0"
         >
           {loading
             ? t("auth.loading_button")
@@ -169,7 +169,7 @@ function LoginForm() {
         <button
           type="button"
           onClick={() => setMode(isRegister ? "login" : "register")}
-          className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+          className="text-sm text-gray-400 hover:text-white transition-colors"
         >
           {isRegister
             ? t("auth.switch_to_login")
@@ -182,21 +182,21 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <SoftYellowGlow>
-      <div className="min-h-screen flex flex-col items-center justify-center px-4">
+    <WavyBackground>
+      <div className="px-4">
         <FadeInSection>
           <Suspense fallback={
-            <div className="w-full max-w-sm animate-pulse">
-              <div className="h-12 w-12 rounded-2xl bg-gray-200 mx-auto mb-6" />
-              <div className="h-8 bg-gray-200 rounded-xl mb-4" />
-              <div className="h-11 bg-gray-200 rounded-xl mb-3" />
-              <div className="h-11 bg-gray-200 rounded-xl" />
+            <div className="w-full max-w-sm animate-pulse bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8">
+              <div className="h-12 w-12 rounded-2xl bg-white/10 mx-auto mb-6" />
+              <div className="h-8 bg-white/10 rounded-xl mb-4" />
+              <div className="h-11 bg-white/10 rounded-xl mb-3" />
+              <div className="h-11 bg-white/10 rounded-xl" />
             </div>
           }>
             <LoginForm />
           </Suspense>
         </FadeInSection>
       </div>
-    </SoftYellowGlow>
+    </WavyBackground>
   );
 }
