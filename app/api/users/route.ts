@@ -32,7 +32,8 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const { email, password } = parsed.data;
+  const { email: rawEmail, password } = parsed.data;
+  const email = rawEmail.toLowerCase().trim();
 
   const existing = await db
     .select({ id: users.id })

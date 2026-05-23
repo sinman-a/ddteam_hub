@@ -108,7 +108,7 @@ function LoginForm() {
             id="email"
             type="email"
             placeholder="you@company.com"
-            className="h-11 rounded-xl border-white/20 bg-white/10 text-white placeholder:text-gray-600 focus:border-blue-400/50 focus-visible:ring-blue-400/30"
+            className="h-11 rounded-xl border-white/20 bg-white/10 text-white placeholder:text-gray-400 focus:border-blue-400/50 focus-visible:ring-blue-400/30"
             {...register("email")}
           />
           {errors.email && (
@@ -124,7 +124,7 @@ function LoginForm() {
             id="password"
             type="password"
             placeholder="••••••••"
-            className="h-11 rounded-xl border-white/20 bg-white/10 text-white placeholder:text-gray-600 focus:border-blue-400/50 focus-visible:ring-blue-400/30"
+            className="h-11 rounded-xl border-white/20 bg-white/10 text-white placeholder:text-gray-400 focus:border-blue-400/50 focus-visible:ring-blue-400/30"
             {...register("password")}
           />
           {errors.password && (
