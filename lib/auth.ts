@@ -6,6 +6,7 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/schema";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET,
   providers: [
     Credentials({
       credentials: {
