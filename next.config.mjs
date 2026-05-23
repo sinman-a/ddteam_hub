@@ -3,12 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { hostname: "public.blob.vercel-storage.com" },
+      { hostname: "b8ecogxhbtdkm9yc.public.blob.vercel-storage.com" },
     ],
-  },
-  experimental: {
-    serverActions: {
-      allowedOrigins: ["ddteam-hub.vercel.app", "localhost:3000"],
-    },
   },
 };
 
