@@ -46,7 +46,13 @@
     "period_30": "30 днів",
     "sync_updated": "Оновлено:",
     "sync_never": "Дані не синхронізовані",
-    "sync_now": "Синхронізувати зараз"
+    "sync_now": "Синхронізувати зараз",
+    "unit_days": "дн",
+    "unit_per_week": "/ тиж",
+    "unit_items": "задач",
+    "no_data": "Немає даних",
+    "task_single": "задача",
+    "task_plural": "задач"
   },
   "team": {
     "subtitle": "DDTeam",
@@ -110,5 +116,8 @@
     "switcher_label": "Мова",
     "uk": "UA",
     "en": "EN"
+  },
+  "profile_page": {
+    "title": "Мій профіль"
   }
 }

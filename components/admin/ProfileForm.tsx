@@ -18,9 +18,10 @@ interface ProfileFormProps {
   profile?: TeamProfile;
   onSuccess: () => void;
   onCancel: () => void;
+  createUrl?: string;
 }
 
-export function ProfileForm({ profile, onSuccess, onCancel }: ProfileFormProps) {
+export function ProfileForm({ profile, onSuccess, onCancel, createUrl }: ProfileFormProps) {
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(profile?.photoUrl ?? "");
@@ -74,7 +75,7 @@ export function ProfileForm({ profile, onSuccess, onCancel }: ProfileFormProps) 
     setLoading(true);
     const body = { ...data, photoUrl, stackTags: tags };
 
-    const url = profile ? `/api/profiles/${profile.id}` : "/api/profiles";
+    const url = profile ? `/api/profiles/${profile.id}` : (createUrl ?? "/api/profiles");
     const method = profile ? "PATCH" : "POST";
 
     const res = await fetch(url, {

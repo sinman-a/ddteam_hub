@@ -46,7 +46,13 @@
     "period_30": "30 days",
     "sync_updated": "Updated:",
     "sync_never": "Data not synced",
-    "sync_now": "Sync now"
+    "sync_now": "Sync now",
+    "unit_days": "d",
+    "unit_per_week": "/ wk",
+    "unit_items": "tasks",
+    "no_data": "No data",
+    "task_single": "task",
+    "task_plural": "tasks"
   },
   "team": {
     "subtitle": "DDTeam",
@@ -110,5 +116,8 @@
     "switcher_label": "Language",
     "uk": "UA",
     "en": "EN"
+  },
+  "profile_page": {
+    "title": "My Profile"
   }
 }

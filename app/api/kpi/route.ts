@@ -6,13 +6,13 @@ import { kpiCache, azureSettings } from "@/lib/schema";
 export const dynamic = "force-dynamic";
 
 const METRICS = [
-  { name: "cycle_time", label: "Cycle Time", description: "Середній час Active → Done", unit: "days" },
-  { name: "lead_time", label: "Lead Time", description: "Середній час від створення до Done", unit: "days" },
-  { name: "throughput", label: "Throughput", description: "User Stories завершено / тиждень", unit: "/ тиждень" },
-  { name: "blocked_pct", label: "Blocked %", description: "Відсоток заблокованих задач", unit: "%" },
-  { name: "vendor_blocked", label: "Vendor Blocked", description: "Задачі заблоковані Vendor-GOSS", unit: "items" },
-  { name: "pr_review_time", label: "PR Review Time", description: "Середній час PR у статусі Active", unit: "days" },
-  { name: "wip_age", label: "WIP Age", description: "Середній вік задач у Active", unit: "days" },
+  { name: "cycle_time",     label: "Cycle Time",      description: "Average time Active → Done",          unit: "days"     },
+  { name: "lead_time",      label: "Lead Time",        description: "Average time from creation to Done",  unit: "days"     },
+  { name: "throughput",     label: "Throughput",       description: "User Stories completed / week",       unit: "per week" },
+  { name: "blocked_pct",    label: "Blocked %",        description: "Percentage of blocked tasks",         unit: "%"        },
+  { name: "vendor_blocked", label: "Vendor Blocked",   description: "Tasks blocked by Vendor-GOSS",        unit: "items"    },
+  { name: "pr_review_time", label: "PR Review Time",   description: "Average PR time in Active status",    unit: "days"     },
+  { name: "wip_age",        label: "WIP Age",          description: "Average age of tasks in Active",      unit: "days"     },
 ];
 
 export async function GET(request: NextRequest) {

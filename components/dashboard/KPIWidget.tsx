@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Info } from "lucide-react";
 import type { KPIMetric } from "@/types/kpi";
+import { useLocale } from "@/lib/locale-context";
 
 function AnimatedNumber({ value, decimals = 0 }: { value: number; decimals?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -38,14 +39,15 @@ interface KPIWidgetProps {
   loading?: boolean;
 }
 
-const UNIT_LABELS: Record<string, string> = {
-  days: "дн",
-  "per week": "/тиж",
-  "%": "%",
-  items: "задач",
-};
-
 export function KPIWidget({ metric, loading }: KPIWidgetProps) {
+  const { t } = useLocale();
+
+  const UNIT_LABELS: Record<string, string> = {
+    days:       t("dashboard.unit_days"),
+    "per week": t("dashboard.unit_per_week"),
+    "%":        "%",
+    items:      t("dashboard.unit_items"),
+  };
   if (loading) {
     return (
       <Card className="rounded-2xl border-gray-100">
@@ -99,11 +101,11 @@ export function KPIWidget({ metric, loading }: KPIWidgetProps) {
             <span className="text-sm text-gray-600 font-medium">{unitLabel}</span>
           </div>
           {metric.value === null && (
-            <p className="text-xs text-gray-600 mt-1">Немає даних</p>
+            <p className="text-xs text-gray-600 mt-1">{t("dashboard.no_data")}</p>
           )}
           {metric.items && metric.items.length > 0 && (
             <p className="text-xs text-gray-600 mt-1">
-              {metric.items.length} {metric.items.length === 1 ? "задача" : "задач"}
+              {metric.items.length} {metric.items.length === 1 ? t("dashboard.task_single") : t("dashboard.task_plural")}
             </p>
           )}
         </CardContent>

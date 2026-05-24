@@ -11,6 +11,7 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { LogOut, User } from "lucide-react";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { useLocale } from "@/lib/locale-context";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -46,9 +47,11 @@ export function TopBar() {
             {session.user.email}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="gap-2 text-sm">
-            <User size={14} />
-            {t("topbar.profile")}
+          <DropdownMenuItem asChild>
+            <Link href="/profile" className="gap-2 text-sm flex items-center w-full cursor-pointer">
+              <User size={14} />
+              {t("topbar.profile")}
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
