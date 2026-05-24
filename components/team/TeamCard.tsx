@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { StaggerItem } from "@/components/animations/StaggerContainer";
 import { formatDate } from "@/lib/utils";
 import type { TeamProfile } from "@/types/profile";
+import { MiniKPI } from "./MiniKPI";
 
 export function TeamCard({ profile }: { profile: TeamProfile }) {
   return (
@@ -54,6 +55,8 @@ export function TeamCard({ profile }: { profile: TeamProfile }) {
                 ))}
               </div>
             )}
+
+            <MiniKPI id={profile.id} />
 
             <div className="flex items-center gap-3 text-gray-400">
               {profile.github && (
