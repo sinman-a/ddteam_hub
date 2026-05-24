@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ProfileForm } from "@/components/admin/ProfileForm";
 import { DiagonalGrid } from "@/components/backgrounds/DiagonalGrid";
 import { FadeInSection } from "@/components/animations/FadeInSection";
@@ -10,6 +11,7 @@ import { useLocale } from "@/lib/locale-context";
 export default function MyProfilePage() {
   const [profile, setProfile] = useState<TeamProfile | null | undefined>(undefined);
   const { t } = useLocale();
+  const router = useRouter();
 
   const fetchProfile = async () => {
     const res = await fetch("/api/profile");
@@ -47,7 +49,7 @@ export default function MyProfilePage() {
               profile={profile ?? undefined}
               createUrl="/api/profile"
               onSuccess={fetchProfile}
-              onCancel={() => {}}
+              onCancel={() => router.back()}
             />
           </div>
         </FadeInSection>

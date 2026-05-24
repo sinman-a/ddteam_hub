@@ -98,6 +98,10 @@
     "integration_error_save": "Save error",
     "integration_error_sync": "Settings saved, but sync failed. Check PAT and permissions."
   },
+  "validation": {
+    "required": "This field is required",
+    "url": "Enter a valid URL (https://...)"
+  },
   "profile_form": {
     "upload_photo": "Update photo",
     "photo_hint": "JPG, PNG up to 5MB",
@@ -110,7 +114,8 @@
     "stack_label": "Tech stack",
     "stack_placeholder": "React, TypeScript...",
     "bio_label": "BIO (Markdown)",
-    "bio_placeholder": "# About me..."
+    "bio_placeholder": "# About me...",
+    "save_success": "Changes saved!"
   },
   "lang": {
     "switcher_label": "Language",

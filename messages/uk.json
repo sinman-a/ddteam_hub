@@ -98,6 +98,10 @@
     "integration_error_save": "Помилка збереження",
     "integration_error_sync": "Налаштування збережено, але синхронізація не вдалась. Перевірте PAT і права доступу."
   },
+  "validation": {
+    "required": "Поле обов'язкове",
+    "url": "Введіть коректний URL (https://...)"
+  },
   "profile_form": {
     "upload_photo": "Оновити фото",
     "photo_hint": "JPG, PNG до 5MB",
@@ -110,7 +114,8 @@
     "stack_label": "Стек технологій",
     "stack_placeholder": "React, TypeScript...",
     "bio_label": "BIO (Markdown)",
-    "bio_placeholder": "# Про мене..."
+    "bio_placeholder": "# Про мене...",
+    "save_success": "Зміни збережено!"
   },
   "lang": {
     "switcher_label": "Мова",

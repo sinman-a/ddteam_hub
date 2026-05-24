@@ -9,7 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Upload, X } from "lucide-react";
+import { AlertCircle, CheckCircle2, Loader2, Upload, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { profileSchema, type ProfileInput } from "@/lib/validations";
 import type { TeamProfile } from "@/types/profile";
 import { useLocale } from "@/lib/locale-context";
@@ -24,6 +25,7 @@ interface ProfileFormProps {
 export function ProfileForm({ profile, onSuccess, onCancel, createUrl }: ProfileFormProps) {
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(profile?.photoUrl ?? "");
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState<string[]>(profile?.stackTags ?? []);
@@ -41,6 +43,12 @@ export function ProfileForm({ profile, onSuccess, onCancel, createUrl }: Profile
       stackTags: profile?.stackTags ?? [],
     },
   });
+
+  const fieldClass = (hasError: boolean) =>
+    cn(
+      "rounded-xl focus-visible:ring-2 focus-visible:ring-gray-900",
+      hasError && "border-red-400 focus-visible:ring-red-400"
+    );
 
   const handlePhotoUpload = async (file: File) => {
     setUploading(true);
@@ -85,7 +93,11 @@ export function ProfileForm({ profile, onSuccess, onCancel, createUrl }: Profile
     });
 
     setLoading(false);
-    if (res.ok) onSuccess();
+    if (res.ok) {
+      setSuccess(true);
+      onSuccess();
+      setTimeout(() => setSuccess(false), 3000);
+    }
   };
 
   return (
@@ -117,56 +129,117 @@ export function ProfileForm({ profile, onSuccess, onCancel, createUrl }: Profile
               }}
             />
           </label>
-          <p className="text-xs text-gray-400">{t("profile_form.photo_hint")}</p>
+          <p className="text-xs text-gray-500">{t("profile_form.photo_hint")}</p>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <Label className="text-sm">{t("profile_form.name_label")}</Label>
-          <Input className="rounded-xl" {...register("name")} />
-          {errors.name && <p className="text-xs text-red-500">{errors.name.message}</p>}
+          <Label htmlFor="field-name" className="text-sm">{t("profile_form.name_label")}</Label>
+          <Input
+            id="field-name"
+            className={fieldClass(!!errors.name)}
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "name-error" : undefined}
+            {...register("name")}
+          />
+          {errors.name && (
+            <p id="name-error" role="alert" className="text-xs text-red-600 flex items-center gap-1 mt-0.5">
+              <AlertCircle size={12} className="shrink-0" />
+              {t("validation.required")}
+            </p>
+          )}
         </div>
         <div className="space-y-1.5">
-          <Label className="text-sm">{t("profile_form.role_label")}</Label>
-          <Input className="rounded-xl" placeholder={t("profile_form.role_placeholder")} {...register("roleTitle")} />
-          {errors.roleTitle && <p className="text-xs text-red-500">{errors.roleTitle.message}</p>}
+          <Label htmlFor="field-role" className="text-sm">{t("profile_form.role_label")}</Label>
+          <Input
+            id="field-role"
+            className={fieldClass(!!errors.roleTitle)}
+            aria-invalid={!!errors.roleTitle}
+            aria-describedby={errors.roleTitle ? "role-error" : undefined}
+            placeholder={t("profile_form.role_placeholder")}
+            {...register("roleTitle")}
+          />
+          {errors.roleTitle && (
+            <p id="role-error" role="alert" className="text-xs text-red-600 flex items-center gap-1 mt-0.5">
+              <AlertCircle size={12} className="shrink-0" />
+              {t("validation.required")}
+            </p>
+          )}
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <Label className="text-sm">{t("profile_form.github_label")}</Label>
-          <Input className="rounded-xl" placeholder="https://github.com/..." {...register("github")} />
+          <Label htmlFor="field-github" className="text-sm">{t("profile_form.github_label")}</Label>
+          <Input
+            id="field-github"
+            className={fieldClass(!!errors.github)}
+            aria-invalid={!!errors.github}
+            aria-describedby={errors.github ? "github-error" : undefined}
+            placeholder="https://github.com/..."
+            {...register("github")}
+          />
+          {errors.github && (
+            <p id="github-error" role="alert" className="text-xs text-red-600 flex items-center gap-1 mt-0.5">
+              <AlertCircle size={12} className="shrink-0" />
+              {t("validation.url")}
+            </p>
+          )}
         </div>
         <div className="space-y-1.5">
-          <Label className="text-sm">{t("profile_form.linkedin_label")}</Label>
-          <Input className="rounded-xl" placeholder="https://linkedin.com/in/..." {...register("linkedin")} />
+          <Label htmlFor="field-linkedin" className="text-sm">{t("profile_form.linkedin_label")}</Label>
+          <Input
+            id="field-linkedin"
+            className={fieldClass(!!errors.linkedin)}
+            aria-invalid={!!errors.linkedin}
+            aria-describedby={errors.linkedin ? "linkedin-error" : undefined}
+            placeholder="https://linkedin.com/in/..."
+            {...register("linkedin")}
+          />
+          {errors.linkedin && (
+            <p id="linkedin-error" role="alert" className="text-xs text-red-600 flex items-center gap-1 mt-0.5">
+              <AlertCircle size={12} className="shrink-0" />
+              {t("validation.url")}
+            </p>
+          )}
         </div>
       </div>
 
       <div className="space-y-1.5">
-        <Label className="text-sm">{t("profile_form.start_date_label")}</Label>
-        <Input type="date" className="rounded-xl" {...register("startDate")} />
+        <Label htmlFor="field-start-date" className="text-sm">{t("profile_form.start_date_label")}</Label>
+        <Input
+          id="field-start-date"
+          type="date"
+          className={fieldClass(false)}
+          {...register("startDate")}
+        />
       </div>
 
       <div className="space-y-1.5">
         <Label className="text-sm">{t("profile_form.stack_label")}</Label>
         <div className="flex gap-2">
           <Input
-            className="rounded-xl flex-1"
+            className={fieldClass(false) + " flex-1"}
             placeholder={t("profile_form.stack_placeholder")}
             value={tagInput}
             onChange={(e) => setTagInput(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }}
           />
-          <Button type="button" variant="outline" className="rounded-xl" onClick={addTag}>+</Button>
+          <Button type="button" variant="outline" className="rounded-xl" onClick={addTag} aria-label={t("common.add")}>
+            +
+          </Button>
         </div>
         <div className="flex flex-wrap gap-1.5 mt-2">
           {tags.map((tag) => (
             <Badge key={tag} variant="secondary" className="rounded-full gap-1 pl-3">
               {tag}
-              <button type="button" onClick={() => removeTag(tag)}>
+              <button
+                type="button"
+                onClick={() => removeTag(tag)}
+                aria-label={`${t("common.delete")} ${tag}`}
+                className="focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-900 rounded-full"
+              >
                 <X size={10} />
               </button>
             </Badge>
@@ -175,13 +248,21 @@ export function ProfileForm({ profile, onSuccess, onCancel, createUrl }: Profile
       </div>
 
       <div className="space-y-1.5">
-        <Label className="text-sm">{t("profile_form.bio_label")}</Label>
+        <Label htmlFor="field-bio" className="text-sm">{t("profile_form.bio_label")}</Label>
         <Textarea
-          className="rounded-xl min-h-[120px] font-mono text-sm"
+          id="field-bio"
+          className="rounded-xl min-h-[120px] font-mono text-sm focus-visible:ring-2 focus-visible:ring-gray-900"
           placeholder={t("profile_form.bio_placeholder")}
           {...register("bioMd")}
         />
       </div>
+
+      {success && (
+        <div role="status" className="flex items-center gap-2 p-3 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm">
+          <CheckCircle2 size={16} className="shrink-0" />
+          {t("profile_form.save_success")}
+        </div>
+      )}
 
       <div className="flex justify-end gap-3 pt-2">
         <Button type="button" variant="outline" className="rounded-xl" onClick={onCancel}>

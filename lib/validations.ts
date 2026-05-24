@@ -1,18 +1,18 @@
 import { z } from "zod";
 
 export const loginSchema = z.object({
-  email: z.string().email("Невірний email"),
-  password: z.string().min(6, "Мінімум 6 символів"),
+  email: z.string().email("Invalid email"),
+  password: z.string().min(6, "Minimum 6 characters"),
 });
 
 export const registerSchema = z.object({
-  email: z.string().email("Невірний email"),
-  password: z.string().min(6, "Мінімум 6 символів"),
+  email: z.string().email("Invalid email"),
+  password: z.string().min(6, "Minimum 6 characters"),
 });
 
 export const profileSchema = z.object({
-  name: z.string().min(1, "Ім'я обов'язкове"),
-  roleTitle: z.string().min(1, "Роль обов'язкова"),
+  name: z.string().min(1, "Name is required"),
+  roleTitle: z.string().min(1, "Role is required"),
   photoUrl: z.string().url().optional().or(z.literal("")),
   bioMd: z.string().optional(),
   stackTags: z.array(z.string()).optional(),
@@ -23,9 +23,9 @@ export const profileSchema = z.object({
 });
 
 export const azureSettingsSchema = z.object({
-  org: z.string().min(1, "Organization обов'язкова"),
-  project: z.string().min(1, "Project обов'язковий"),
-  pat: z.string().min(1, "PAT Token обов'язковий"),
+  org: z.string().min(1, "Organization is required"),
+  project: z.string().min(1, "Project is required"),
+  pat: z.string().min(1, "PAT Token is required"),
 });
 
 export type LoginInput = z.infer<typeof loginSchema>;
