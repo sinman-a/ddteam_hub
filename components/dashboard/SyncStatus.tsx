@@ -27,7 +27,7 @@ export function SyncStatus({ lastSyncAt, onManualSync }: SyncStatusProps) {
   return (
     <div className="flex items-center gap-2 text-xs">
       {lastSyncAt ? (
-        <div className="flex items-center gap-1.5 text-gray-400">
+        <div className="flex items-center gap-1.5 text-gray-600">
           {isStale ? (
             <AlertCircle size={12} className="text-amber-500" />
           ) : (
@@ -36,7 +36,7 @@ export function SyncStatus({ lastSyncAt, onManualSync }: SyncStatusProps) {
           <span>{t("dashboard.sync_updated")} {formatDate(lastSyncAt)}</span>
         </div>
       ) : (
-        <div className="flex items-center gap-1.5 text-gray-400">
+        <div className="flex items-center gap-1.5 text-gray-600">
           <AlertCircle size={12} className="text-gray-300" />
           <span>{t("dashboard.sync_never")}</span>
         </div>
@@ -46,8 +46,8 @@ export function SyncStatus({ lastSyncAt, onManualSync }: SyncStatusProps) {
         <button
           onClick={handleSync}
           disabled={syncing}
-          className="flex items-center gap-1 text-gray-400 hover:text-gray-700 transition-colors ml-1"
-          title={t("dashboard.sync_now")}
+          aria-label={t("dashboard.sync_now")}
+          className="flex items-center gap-1 text-gray-600 hover:text-gray-900 transition-colors ml-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-1 rounded-sm"
         >
           <RefreshCw size={12} className={syncing ? "animate-spin" : ""} />
         </button>

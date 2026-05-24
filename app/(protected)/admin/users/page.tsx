@@ -71,7 +71,7 @@ export default function AdminUsersPage() {
     <DiagonalGrid>
       <div className="max-w-5xl mx-auto px-6 py-12">
         <FadeInSection>
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">
+          <p className="text-xs font-semibold text-gray-600 uppercase tracking-widest mb-2">
             {t("admin.section_label")}
           </p>
           <h1 className="text-4xl font-black tracking-tightest text-gradient mb-8">

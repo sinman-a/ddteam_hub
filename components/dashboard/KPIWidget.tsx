@@ -77,8 +77,13 @@ export function KPIWidget({ metric, loading }: KPIWidgetProps) {
           </CardTitle>
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger>
-                <Info size={14} className="text-gray-300 hover:text-gray-500 transition-colors" />
+              <TooltipTrigger asChild>
+                <button
+                  aria-label={metric.description}
+                  className="text-gray-500 hover:text-gray-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-900 rounded-sm"
+                >
+                  <Info size={14} />
+                </button>
               </TooltipTrigger>
               <TooltipContent>
                 <p className="text-xs max-w-[200px]">{metric.description}</p>
@@ -91,13 +96,13 @@ export function KPIWidget({ metric, loading }: KPIWidgetProps) {
             <span className="text-4xl font-black tracking-tightest text-gray-900">
               <AnimatedNumber value={value} decimals={decimals} />
             </span>
-            <span className="text-sm text-gray-400 font-medium">{unitLabel}</span>
+            <span className="text-sm text-gray-600 font-medium">{unitLabel}</span>
           </div>
           {metric.value === null && (
-            <p className="text-xs text-gray-400 mt-1">Немає даних</p>
+            <p className="text-xs text-gray-600 mt-1">Немає даних</p>
           )}
           {metric.items && metric.items.length > 0 && (
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-gray-600 mt-1">
               {metric.items.length} {metric.items.length === 1 ? "задача" : "задач"}
             </p>
           )}

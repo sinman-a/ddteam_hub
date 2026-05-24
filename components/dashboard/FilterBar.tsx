@@ -19,14 +19,14 @@ export function FilterBar({ period, onPeriodChange }: FilterBarProps) {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs text-gray-400 font-medium mr-1">{t("dashboard.period_label")}</span>
+      <span className="text-xs text-gray-600 font-medium mr-1">{t("dashboard.period_label")}</span>
       <div className="flex gap-1.5 bg-gray-100/80 rounded-xl p-1">
         {PERIODS.map((p) => (
           <button
             key={p.value}
             onClick={() => onPeriodChange(p.value)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200",
+              "px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-1",
               period === p.value
                 ? "bg-white text-gray-900 shadow-sm"
                 : "text-gray-500 hover:text-gray-700"

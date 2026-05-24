@@ -89,7 +89,7 @@ export function ProfileDetail({ profile }: { profile: TeamProfile }) {
       {profile.stackTags && profile.stackTags.length > 0 && (
         <FadeInSection delay={0.2}>
           <div className="mb-8">
-            <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-3">
+            <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-widest mb-3">
               {t("team.tech_stack")}
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -106,7 +106,7 @@ export function ProfileDetail({ profile }: { profile: TeamProfile }) {
       {profile.bioMd && (
         <FadeInSection delay={0.3}>
           <div className="prose prose-gray max-w-none">
-            <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
+            <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-widest mb-4">
               {t("team.about")}
             </h2>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>

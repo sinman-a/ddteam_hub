@@ -53,7 +53,7 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-1",
                 active
                   ? "bg-gray-900 text-white shadow-sm"
                   : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -69,7 +69,7 @@ export function Sidebar() {
         {isAdmin && (
           <>
             <div className="pt-4 pb-1 px-3">
-              <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
+              <span className="text-xs font-semibold text-gray-600 uppercase tracking-widest">
                 {t("nav.admin_section")}
               </span>
             </div>
@@ -81,7 +81,7 @@ export function Sidebar() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                    "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-1",
                     active
                       ? "bg-gray-900 text-white shadow-sm"
                       : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"

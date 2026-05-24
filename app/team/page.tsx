@@ -25,7 +25,7 @@ export default async function TeamPage() {
           <div className="max-w-6xl mx-auto">
             <FadeInSection>
               <BackButton label={t("common.back")} />
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+              <p className="text-xs font-semibold text-gray-600 uppercase tracking-widest mb-4">
                 {t("team.subtitle")}
               </p>
               <h1 className="text-5xl sm:text-6xl font-black tracking-tightest text-gradient mb-4">

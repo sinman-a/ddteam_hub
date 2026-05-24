@@ -47,7 +47,7 @@ export default function AdminProfilesPage() {
         <FadeInSection>
           <div className="flex items-center justify-between mb-8">
             <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">
+              <p className="text-xs font-semibold text-gray-600 uppercase tracking-widest mb-2">
                 {t("admin.section_label")}
               </p>
               <h1 className="text-4xl font-black tracking-tightest text-gradient">
@@ -109,6 +109,7 @@ export default function AdminProfilesPage() {
                     <Button
                       size="sm"
                       variant="ghost"
+                      aria-label={t("common.edit")}
                       className="h-8 w-8 p-0 rounded-lg"
                       onClick={() => handleEdit(profile)}
                     >
@@ -117,6 +118,7 @@ export default function AdminProfilesPage() {
                     <Button
                       size="sm"
                       variant="ghost"
+                      aria-label={t("common.delete")}
                       className="h-8 w-8 p-0 rounded-lg text-red-500 hover:text-red-700 hover:bg-red-50"
                       onClick={() => handleDelete(profile.id)}
                     >

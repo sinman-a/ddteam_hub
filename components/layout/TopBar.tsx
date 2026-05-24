@@ -27,7 +27,7 @@ export function TopBar() {
     <header className="h-14 bg-white/80 apple-blur border-b border-gray-100 flex items-center justify-end px-6 sticky top-0 z-50">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button className="flex items-center gap-2.5 rounded-full hover:bg-gray-100 p-1 pr-3 transition-colors">
+          <button className="flex items-center gap-2.5 rounded-full hover:bg-gray-100 p-1 pr-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-1">
             <Avatar className="h-7 w-7">
               <AvatarFallback className="text-xs bg-gray-900 text-white">
                 {initials}
