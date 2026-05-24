@@ -7,7 +7,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "saving": "Saving...",
-    "uploading": "Uploading..."
+    "uploading": "Uploading...",
+    "back": "Back"
   },
   "auth": {
     "sign_in_title": "Sign in to your account",
